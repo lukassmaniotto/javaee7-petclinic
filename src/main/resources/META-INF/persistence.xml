@@ -9,6 +9,7 @@
         <class>org.woehlke.javaee7.petclinic.entities.Owner</class>
         <class>org.woehlke.javaee7.petclinic.entities.Pet</class>
         <class>org.woehlke.javaee7.petclinic.entities.PetType</class>
+        <class>org.woehlke.javaee7.petclinic.entities.Tarefa</class>
         <class>org.woehlke.javaee7.petclinic.entities.Specialty</class>
         <class>org.woehlke.javaee7.petclinic.entities.Vet</class>
         <class>org.woehlke.javaee7.petclinic.entities.Visit</class>
