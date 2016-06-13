@@ -1,0 +1,46 @@
+    <ui:composition template="./template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:a4j="http://richfaces.org/a4j"
+                xmlns:rich="http://richfaces.org/rich">
+
+        <ui:define name="content">
+            <h2 id="tarefas">#{msg.tarefas}</h2>
+            <h:form id="tarefasForm">
+                <rich:dataTable id="tarefasTable"  rows="5" value="#{tarefaController.tarefas}" var="tarefa" styleClass="table table-striped table-hover">
+                    <rich:column id="colDesc" sortBy="#{tarefa.descricao}" sortOrder="#{tarefaController.tarefaSortOrder}">
+                        <f:facet name="header">
+                            <a4j:commandLink id="colDescSort" value="#{msg.descricao}" render="tarefaTable" action="#{tarefaController.switchSortOrder}" />
+                        </f:facet>
+                        <h:outputText id="descricao" value="#{tarefa.descricao}"/>
+                    </rich:column>
+					<rich:column id="colObs" sortBy="#{tarefa.observacao}" sortOrder="#{tarefaController.tarefaSortOrder}">
+                        <f:facet name="header">
+                            <a4j:commandLink id="colObsSort" value="#{msg.observacao}" render="tarefasTable" action="#{tarefaController.switchSortOrder}" />
+                        </f:facet>
+                        <h:outputText id="observacao" value="#{tarefa.observacao}"/>
+                    </rich:column>
+                    <rich:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{msg.edit}"/>
+                        </f:facet>
+                        <h:commandLink id="edit" action="#{tarefaController.getEditForm(tarefa.id)}"><span class="glyphicon glyphicon-edit"/></h:commandLink>
+                    </rich:column>
+                    <rich:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{msg.delete}"/>
+                        </f:facet>
+                        <h:commandLink id="delete" action="#{tarefaController.delete(tarefa.id)}"><span class="glyphicon glyphicon-trash"/></h:commandLink>
+                    </rich:column>
+                </rich:dataTable>
+                <rich:dataScroller for="tarefasTable"
+                                   page="#{tarefaController.scrollerPage}"
+                                   id="scroller"/><br/>
+                <br/>
+                <span class="glyphicon glyphicon-plus-sign" /><h:commandLink id="getNewTarefaForm" action="#{tarefaController.getNewTarefaForm}"><h:outputText value="#{msg.addNewTarefa}"/></h:commandLink>
+            </h:form>
+        </ui:define>
+
+    </ui:composition>
